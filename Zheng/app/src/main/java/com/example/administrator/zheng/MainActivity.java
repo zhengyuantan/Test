@@ -2,6 +2,7 @@ package com.example.administrator.zheng;
 
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.view.Gravity;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button btn_divide;
 
     EditText et_input;
+    EditText et_output;
     boolean clear_flag;//清空标识
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_plus=(Button)findViewById(R.id.but_plus);
         btn_divide=(Button)findViewById(R.id.but_divide);
 
-
+        et_output=(EditText)findViewById(R.id.et_output);
         et_input=(EditText)findViewById(R.id.et_input);
-
         btn_0.setOnClickListener(this);
         btn_1.setOnClickListener(this);
         btn_2.setOnClickListener(this);
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     clear_flag=false;
                     str="";
                     et_input.setText(" ");
+                    et_output.setText(" ");
                 }else if(str!=null&&!str.equals("")){
                     et_input.setText(str.substring(0,str.length()-1));
                 }
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 clear_flag=false;
                 str="";
                 et_input.setText(" ");
+                et_output.setText(" ");
                 break;
             case R.id.but_equal:
                 getResult();
@@ -170,13 +173,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if(!s1.contains(".")&&!s2.contains(".")&&!op.equals("/")){
                 int r=(int)result;
-                et_input.setText(r+"");
+
+                et_output.setText(r+"");
             }else {
-                et_input.setText(result + "");
+
+                et_output.setText(result + "");
             }
 
         }else if(s1.equals(" ")&&!s2.equals(" ")){
-            et_input.setText(exp);
+
+            et_output.setText(exp);
         }else if(!s1.equals(" ")&&s2.equals(" ")){
             double d2=Double.parseDouble(s2);
 
@@ -192,12 +198,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if(!s2.contains(".")){
                 int r=(int)result;
-                et_input.setText(r+"");
+
+                et_output.setText(r+"");
             }else {
-                et_input.setText(result + "");
+
+                et_output.setText(result + "");
             }
         }else{
-            et_input.setText(exp);
+
+            et_output.setText(exp);
         }
     }
 }
